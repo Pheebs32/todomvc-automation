@@ -21,24 +21,24 @@ public class AppTest {
 
     @Test
     void createsTodo() {
-        // create new item
+        // Create a new item
         driver.get("https://todomvc.com/examples/vanillajs/");
         WebElement todoInput = driver.findElement(By.className("new-todo"));
         todoInput.sendKeys("Buy groceries");
         todoInput.sendKeys(Keys.ENTER);
 
-        // verify count
+        // Verify count
         WebElement todoCount = driver.findElement(By.cssSelector(".todo-count > strong"));
         assertEquals(1, Integer.parseInt(todoCount.getText()));
 
-        // verify item in the list
+        // Verify item in the list
         List<WebElement> todoList = driver.findElements(By.cssSelector(".todo-list li"));
         assertTrue(todoList.stream().anyMatch(el -> "Buy groceries".equals(el.getText())));
     }
 
     @Test
     public void testEditTodoItem() {
-        // Create new item
+        // Create a new item
         driver.get("https://todomvc.com/examples/vanillajs/");
         String todoText = "Buy groceries";
         driver.findElement(By.cssSelector(".new-todo")).sendKeys(todoText);
@@ -62,6 +62,33 @@ public class AppTest {
         // verify changed item in the list
         List<WebElement> todoList = driver.findElements(By.cssSelector(".todo-list li"));
         assertTrue(todoList.stream().anyMatch(el -> "Buy groceries and toiletries".equals(el.getText())));
+    }
+
+    @Test
+    public void removesTodo() {
+        // Create a new item
+        driver.get("https://todomvc.com/examples/vanillajs/");
+        WebElement todoInput = driver.findElement(By.className("new-todo"));
+        todoInput.sendKeys("Buy groceries");
+        todoInput.sendKeys(Keys.ENTER);
+
+        // Get item by name
+        WebElement todoLi = driver.findElements(By.cssSelector(".todo-list li"))
+                .stream()
+                .filter(el -> "Buy groceries".equals(el.getText()))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Test data missing!"));
+
+        // Move mouse to the item
+        new Actions(driver).moveToElement(todoLi).perform();
+
+        // Remove the item
+        WebElement todoDestroyButton = todoLi.findElement(By.cssSelector("button.destroy"));
+        todoDestroyButton.click();
+
+        // Verify no item in the list
+        List<WebElement> todoList = driver.findElements(By.cssSelector(".todo-list li"));
+        assertTrue(todoList.stream().noneMatch(el -> "Buy groceries".equals(el.getText())));
     }
 
 
