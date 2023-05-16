@@ -1,47 +1,43 @@
 package auto.todo;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
-import javax.security.auth.Subject;
+import java.util.List;
 import org.openqa.selenium.Keys;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
     private static FirefoxDriver driver;
 
-    @BeforeAll
-    static void launchBrowser() {
+    @BeforeEach
+    void launchBrowser() {
         driver = new FirefoxDriver();
     }
 
     @Test
-    public void testAddTodoItem() {
-        // Add a new item
+    void createsTodo() {
+        // create new item
         driver.get("https://todomvc.com/examples/vanillajs/");
-        String todoText = "Buy groceries";
-        driver.findElement(By.cssSelector(".new-todo")).sendKeys(todoText);
-        WebElement search = driver.findElement(By.cssSelector(".new-todo"));
-        search.sendKeys(Keys.RETURN);
+        WebElement todoInput = driver.findElement(By.className("new-todo"));
+        todoInput.sendKeys("Buy groceries");
+        todoInput.sendKeys(Keys.ENTER);
 
-        // Wait for the item to be added
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector(".todo-list li:nth-child(1) label"), todoText));
+        // verify count
+        WebElement todoCount = driver.findElement(By.cssSelector(".todo-count > strong"));
+        assertEquals(1, Integer.parseInt(todoCount.getText()));
 
-        // Verify that the item is added correctly
-        String addedTodoText = driver.findElement(By.cssSelector(".todo-list li:nth-child(1) label")).getText();
-        assertEquals(todoText, addedTodoText);
+        // verify item in the list
+        List<WebElement> todoList = driver.findElements(By.cssSelector(".todo-list li"));
+        assertTrue(todoList.stream().anyMatch(el -> "Buy groceries".equals(el.getText())));
     }
 
-    @AfterAll
-    static void closeBrowser() {
+    @AfterEach
+    void closeBrowser() {
         driver.quit();
     }
 }
