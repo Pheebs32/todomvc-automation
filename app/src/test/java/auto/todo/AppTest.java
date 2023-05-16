@@ -134,6 +134,42 @@ public class AppTest {
         assertEquals(1, activeTodos.size());
     }
 
+    @Test
+    void togglesAllTodosCompleted() {
+        // Create new items
+        driver.get("https://todomvc.com/examples/vanillajs/");
+        WebElement todoInput = driver.findElement(By.className("new-todo"));
+        todoInput.sendKeys("Buy groceries");
+        todoInput.sendKeys(Keys.ENTER);
+
+        todoInput.sendKeys("Buy dog food");
+        todoInput.sendKeys(Keys.ENTER);
+
+        // Toggle all items
+        WebElement toggleAllCheckbox = driver.findElement(By.className("toggle-all"));
+        toggleAllCheckbox.click();
+
+        // Verify count
+        WebElement todoCount = driver.findElement(By.cssSelector(".todo-count > strong"));
+        assertEquals(0, Integer.parseInt(todoCount.getText()));
+
+        // Show completed items
+        WebElement completedLink = driver.findElement(By.cssSelector("a[href='#/completed']"));
+        completedLink.click();
+
+        // Verify completed items count
+        List<WebElement> completedTodos = driver.findElements(By.cssSelector(".todo-list li"));
+        assertEquals(2, completedTodos.size());
+
+        // Show active items
+        WebElement activeLink = driver.findElement(By.cssSelector("a[href='#/active']"));
+        activeLink.click();
+
+        // Verify active items count
+        List<WebElement> activeTodos = driver.findElements(By.cssSelector(".todo-list li"));
+        assertEquals(0, activeTodos.size());
+    }
+
     @AfterEach
     void closeBrowser() {
         driver.quit();
