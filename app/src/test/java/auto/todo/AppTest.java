@@ -36,6 +36,35 @@ public class AppTest {
         assertTrue(todoList.stream().anyMatch(el -> "Buy groceries".equals(el.getText())));
     }
 
+    @Test
+    public void testEditTodoItem() {
+        // Create new item
+        driver.get("https://todomvc.com/examples/vanillajs/");
+        String todoText = "Buy groceries";
+        driver.findElement(By.cssSelector(".new-todo")).sendKeys(todoText);
+        WebElement search = driver.findElement(By.cssSelector(".new-todo"));
+        search.sendKeys(Keys.RETURN);
+
+        // Get the item
+        WebElement todoLi = driver.findElements(By.cssSelector(".todo-list li"))
+                .stream()
+                .filter(el -> "Buy groceries".equals(el.getText()))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Test data missing!"));
+        // Edit the item
+        new Actions(driver).doubleClick(todoLi).perform();
+
+        WebElement todoEditInput = todoLi.findElement(By.cssSelector("input.edit"));
+        driver.executeScript("arguments[0].value = ''", todoEditInput);
+        todoEditInput.sendKeys("Buy groceries and toiletries");
+        todoEditInput.sendKeys(Keys.ENTER);
+
+        // verify changed item in the list
+        List<WebElement> todoList = driver.findElements(By.cssSelector(".todo-list li"));
+        assertTrue(todoList.stream().anyMatch(el -> "Buy groceries and toiletries".equals(el.getText())));
+    }
+
+
     @AfterEach
     void closeBrowser() {
         driver.quit();
