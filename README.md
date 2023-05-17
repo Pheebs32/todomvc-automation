@@ -14,7 +14,7 @@ Add a new ToDo item - **Automate Now** [x]
 <br>When there are any completed items, a "Clear completed" link appears in the status bar - **Automate Now** [X] - Done in prior tests
 <br>When the "Clear completed" link is clicked, all completed items are deleted - **Automate now** [X]
 <br>Toggle all todo items to completed or not completed - **Automate now** [X]
-<br>Status bar displays "1 item left" when there is 1 item left, ect- **Automate Now** [ ]
+<br>Status bar displays "1 item left" when there is 1 item left, ect- **Automate Now** [X]
 <br>Can click ‘X’ symbol and delete list item - **Automate Now** [ ]
 <br>Can’t add an item with an empty value - **Automate Now** [ ]
 <br>Can add a value with a single character - **Automate Now** [ ]

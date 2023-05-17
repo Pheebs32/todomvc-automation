@@ -289,6 +289,33 @@ public class AppTest {
         assertFalse(search.isDisplayed());
     }
 
+    @Test
+    void testStatusBarCount1() {
+        // Create a new item
+        WebElement todoInput = driver.findElement(By.className("new-todo"));
+        todoInput.sendKeys("Buy groceries");
+        todoInput.sendKeys(Keys.ENTER);
+
+        // Verify item count
+        WebElement todoCount = driver.findElement(By.cssSelector(".todo-count > strong"));
+        assertEquals(1, Integer.parseInt(todoCount.getText()));
+    }
+
+    @Test
+    void testStatusBarCount2() {
+        // Create new items
+        WebElement todoInput = driver.findElement(By.className("new-todo"));
+        todoInput.sendKeys("Buy groceries");
+        todoInput.sendKeys(Keys.ENTER);
+
+        todoInput.sendKeys("Buy dog food");
+        todoInput.sendKeys(Keys.ENTER);
+
+        // Verify item count
+        WebElement todoCount = driver.findElement(By.cssSelector(".todo-count > strong"));
+        assertEquals(2, Integer.parseInt(todoCount.getText()));
+    }
+
     @AfterEach
     void closeBrowser() {
         driver.quit();
