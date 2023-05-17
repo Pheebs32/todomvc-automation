@@ -367,10 +367,12 @@ public class AppTest {
         todoInput.sendKeys("\uD83E\uDD2A");
         todoInput.sendKeys("\uD83E\uDD79");
         todoInput.sendKeys(Keys.ENTER);
+        todoInput.sendKeys("Today we will be playing Mario Kart! \uD83E\uDD2A");
+        todoInput.sendKeys(Keys.ENTER);
 
         // Verify item count
         WebElement todoCount = driver.findElement(By.cssSelector(".todo-count > strong"));
-        assertEquals(2, Integer.parseInt(todoCount.getText()));
+        assertEquals(3, Integer.parseInt(todoCount.getText()));
     }
 
     @AfterEach
