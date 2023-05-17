@@ -28,4 +28,4 @@ Can’t add an item with an empty value - **Automate Now**
 
 ### **Hyperlink test**
 
-Spidering Tool to generate a report on working hyperlinks to each listed framework Automated Already! End-To-End
+Spidering Tool to generate a report on working hyperlinks to each listed framework - **Automated Already!**
