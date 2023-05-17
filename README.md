@@ -18,9 +18,9 @@ Add a new ToDo item - **Automate Now** [x]
 <br>Can click ‘X’ symbol and delete list item - **Automate Now** [X]
 <br>Can’t add an item with an empty value - **Automate Now** [X]
 <br>Can add a value with a single character - **Automate Now** [X]
-<br>Can add just numerical values - **Automate Now** [ ]
-<br>Can add Accented character - **Automate Now** [ ]
-<br>Can add emoji character - **Automate Now** [ ]
+<br>Can add just numerical values - **Automate Now** [X]
+<br>Can add Accented character - **Automate Now** [X]
+<br>Can add emoji character - **Automate Now** [X]
 
 #### Automate Later
 A ToDo item can be reordered by dragging it up or down in the list - **Framework dependent? Automate Later? - could be harder to implement especially due to how the lists are statically ordered.**
