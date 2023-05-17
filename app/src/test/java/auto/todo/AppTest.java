@@ -159,6 +159,53 @@ public class AppTest {
     }
 
     @Test
+    void testTogglesTodoCompletedAndTogglesItOff() {
+        // Create new items
+        WebElement todoInput = driver.findElement(By.className("new-todo"));
+        todoInput.sendKeys("Buy groceries");
+        todoInput.sendKeys(Keys.ENTER);
+
+        todoInput.sendKeys("Buy dog food");
+        todoInput.sendKeys(Keys.ENTER);
+
+        // Get the item by name
+        WebElement todoLi = driver.findElements(By.cssSelector(".todo-list li"))
+                .stream()
+                .filter(el -> "Buy groceries".equals(el.getText()))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Test data missing!"));
+
+        // Toggle item completed
+        WebElement todoToggleCheckbox = todoLi.findElement(By.cssSelector("input.toggle"));
+        todoToggleCheckbox.click();
+        todoToggleCheckbox.click();
+
+        // Verify count
+        WebElement todoCount = driver.findElement(By.cssSelector(".todo-count > strong"));
+        assertEquals(2, Integer.parseInt(todoCount.getText()));
+
+        // Show completed items
+        WebElement completedLink = driver.findElement(By.cssSelector("a[href='#/completed']"));
+        completedLink.click();
+
+        // Verify completed items count
+        List<WebElement> completedTodos = driver.findElements(By.cssSelector(".todo-list li"));
+        assertEquals(0, completedTodos.size());
+
+        // Show active items
+        WebElement activeLink = driver.findElement(By.cssSelector("a[href='#/active']"));
+        activeLink.click();
+
+        // Verify active items count
+        List<WebElement> activeTodos = driver.findElements(By.cssSelector(".todo-list li"));
+        assertEquals(2, activeTodos.size());
+
+        // Show all items
+        WebElement allLink = driver.findElement(By.cssSelector("a[href='#/"));
+        allLink.click();
+    }
+
+    @Test
     void testTogglesAllTodosCompleted() {
         // Create new items
         WebElement todoInput = driver.findElement(By.className("new-todo"));

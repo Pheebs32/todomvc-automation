@@ -6,7 +6,7 @@ Add a new ToDo item - **Automate Now** [x]
 <br>Modify a ToDo item (by double-clicking) - **Automate Now** [X]
 <br>If you modify a ToDo item and click Escape during edit, it should cancel the modification - **Automate Now** [X]
 <br>A ToDo item can be ticked-off (it will appear with a line through it) - **Automate Now** [X]
-<br>A completed ToDo item can be unticked again - **Automate Now** [ ]
+<br>A completed ToDo item can be unticked again - **Automate Now** [X] - Might find another way to implement this
 <br>A ToDo item can be reordered by dragging it up or down in the list - **Framework dependent? Automate Later? - could be harder to implement especially due to how the lists are statically ordered.**
 <br>Delete any ToDo item - **Automate Now** [X]
 <br>Status bar displays the correct number of items remaining, and is hidden when none remain - **Automate Now** [X]
