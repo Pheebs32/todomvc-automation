@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.JavascriptExecutor;
+//import org.openqa.selenium.JavascriptExecutor;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AppTest {
     private static FirefoxDriver driver;
     @BeforeEach
-    void launchBrowser() throws InterruptedException {
+    void launchBrowser() {
         driver = new FirefoxDriver();
         driver.get("https://todomvc.com/examples/vanillajs/");
         //Thread.sleep(3000);
@@ -380,9 +380,9 @@ public class AppTest {
     @Test
     void testAllLinksOnHomePage() {
         String homePage = "https://todomvc.com/";
-        String url = "";
-        HttpURLConnection huc = null;
-        int respCode = 200;
+        String url;
+        HttpURLConnection huc;
+        int respCode;
         int broken = 0;
         int working = 0;
         driver.get(homePage);
@@ -416,8 +416,7 @@ public class AppTest {
     }
 
     @AfterEach
-    void closeBrowser () {
+    void closeBrowser() {
         driver.quit();
     }
 }
-
