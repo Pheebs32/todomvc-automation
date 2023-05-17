@@ -4,20 +4,22 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import org.openqa.selenium.Keys;
+import java.net.HttpURLConnection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
     private static FirefoxDriver driver;
-
     @BeforeEach
-    void launchBrowser() {
+    void launchBrowser() throws InterruptedException {
         driver = new FirefoxDriver();
         driver.get("https://todomvc.com/examples/vanillajs/");
+        //Thread.sleep(3000);
     }
 
     @Test
@@ -375,8 +377,47 @@ public class AppTest {
         assertEquals(3, Integer.parseInt(todoCount.getText()));
     }
 
+    @Test
+    void testAllLinksOnHomePage() {
+        String homePage = "https://todomvc.com/";
+        String url = "";
+        HttpURLConnection huc = null;
+        int respCode = 200;
+        int broken = 0;
+        int working = 0;
+        driver.get(homePage);
+        List<WebElement> links = driver.findElements(By.tagName("a"));
+        for (WebElement link : links) {
+            url = link.getAttribute("href");
+            //System.out.println(url);
+            if (url == null || url.isEmpty()) {
+                System.out.println(url + "URL is either not configured for anchor tag or it is empty");
+                continue;
+            } if (!url.startsWith(homePage)) {
+                System.out.println(url + "URL belongs to another domain, skipping it.");
+                continue;
+            } try {
+                huc = (HttpURLConnection) (new URL(url).openConnection());
+                huc.setRequestMethod("HEAD");
+                huc.connect();
+                respCode = huc.getResponseCode();
+                if (respCode >= 400) {
+                    System.out.println(url + " is a broken link");
+                    broken += 1;
+                } else {
+                    working += 1;
+                    System.out.println(url + " is a valid link");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("There are "+ broken + " links broken on the main page out of " + (working + broken) + "!");
+    }
+
     @AfterEach
-    void closeBrowser() {
+    void closeBrowser () {
         driver.quit();
     }
 }
+

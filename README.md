@@ -25,9 +25,9 @@ Add a new ToDo item - **Automate Now** [x]
 
 #### Automate Later
 A ToDo item can be reordered by dragging it up or down in the list - **Framework dependent? Automate Later? - could be harder to implement especially due to how the lists are statically ordered.**
-<br>When status bar is toggled to All, all items are visible - **Automate Later**
-<br>When status bar is toggled to Active, only active items are visible - **Automate Later**
-<br>When status bar is toggled to Completed, only completed items are visible - **Automate Later**
+<br>When status bar is toggled to All, all items are visible - **Automate Later** [X]
+<br>When status bar is toggled to Active, only active items are visible - **Automate Later** [X]
+<br>When status bar is toggled to Completed, only completed items are visible - **Automate Later** [X]
 
 ### **Hyperlink test**
-Spidering Tool to generate a report on working hyperlinks to each listed framework - **Was Automated Already!** [ ]
+Spidering Tool to generate a report on working hyperlinks to each listed framework - **Automated** [X]
