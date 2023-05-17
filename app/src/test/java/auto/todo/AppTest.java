@@ -334,10 +334,14 @@ public class AppTest {
         WebElement todoInput = driver.findElement(By.className("new-todo"));
         todoInput.sendKeys("A");
         todoInput.sendKeys(Keys.ENTER);
+        todoInput.sendKeys("5");
+        todoInput.sendKeys(Keys.ENTER);
+        todoInput.sendKeys("-");
+        todoInput.sendKeys(Keys.ENTER);
 
         // Verify item count
         WebElement todoCount = driver.findElement(By.cssSelector(".todo-count > strong"));
-        assertEquals(1, Integer.parseInt(todoCount.getText()));
+        assertEquals(3, Integer.parseInt(todoCount.getText()));
     }
 
     @AfterEach
