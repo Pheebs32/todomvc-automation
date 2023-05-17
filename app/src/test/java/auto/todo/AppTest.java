@@ -64,6 +64,33 @@ public class AppTest {
     }
 
     @Test
+    void testEditTodoItemAndCancelIt() {
+        // Create a new item
+        String todoText = "Buy groceries";
+        driver.findElement(By.cssSelector(".new-todo")).sendKeys(todoText);
+        WebElement search = driver.findElement(By.cssSelector(".new-todo"));
+        search.sendKeys(Keys.RETURN);
+
+        // Get the item
+        WebElement todoLi = driver.findElements(By.cssSelector(".todo-list li"))
+                .stream()
+                .filter(el -> "Buy groceries".equals(el.getText()))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Test data missing!"));
+        // Edit the item
+        new Actions(driver).doubleClick(todoLi).perform();
+
+        WebElement todoEditInput = todoLi.findElement(By.cssSelector("input.edit"));
+        driver.executeScript("arguments[0].value = ''", todoEditInput);
+        todoEditInput.sendKeys("Buy groceries and toiletries");
+        todoEditInput.sendKeys(Keys.ESCAPE);
+
+        // verify changed item in the list
+        List<WebElement> todoList = driver.findElements(By.cssSelector(".todo-list li"));
+        assertTrue(todoList.stream().anyMatch(el -> "Buy groceries".equals(el.getText())));
+    }
+
+    @Test
     void testRemovesTodo() {
         // Create a new item
         WebElement todoInput = driver.findElement(By.className("new-todo"));
