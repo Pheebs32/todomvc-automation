@@ -328,6 +328,18 @@ public class AppTest {
         assertFalse(search.isDisplayed());
     }
 
+    @Test
+    void testAddTodoSingleCharacter() {
+        // Try to create a new item
+        WebElement todoInput = driver.findElement(By.className("new-todo"));
+        todoInput.sendKeys("A");
+        todoInput.sendKeys(Keys.ENTER);
+
+        // Verify item count
+        WebElement todoCount = driver.findElement(By.cssSelector(".todo-count > strong"));
+        assertEquals(1, Integer.parseInt(todoCount.getText()));
+    }
+
     @AfterEach
     void closeBrowser() {
         driver.quit();
