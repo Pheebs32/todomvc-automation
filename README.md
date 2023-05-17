@@ -8,14 +8,15 @@ Add a new ToDo item - **Automate Now** [x]
 <br>A ToDo item can be ticked-off (it will appear with a line through it) - **Automate Now** [X]
 <br>A completed ToDo item can be unticked again - **Automate Now** [X] - Might find another way to implement this
 <br>Delete any ToDo item - **Automate Now** [X]
-<br>Status bar displays the correct number of items remaining, and is hidden when none remain - **Automate Now** [X]
-<br>Status bar can toggle between Active, All and Completed - **Automate Now** [ ]
-<br>When there are any completed items, a "Clear completed" link appears in the status bar - **Automate Now** [X]
+<br>Status bar displays the correct number of items remaining, and is hidden when none remain - **Automate Now** [X] - Done in prior tests
+<br> - Hidden when none remain [X]
+<br>Status bar can toggle between Active, All and Completed - **Automate Now** [X] - Done in prior tests
+<br>When there are any completed items, a "Clear completed" link appears in the status bar - **Automate Now** [X] - Done in prior tests
 <br>When the "Clear completed" link is clicked, all completed items are deleted - **Automate now** [X]
 <br>Toggle all todo items to completed or not completed - **Automate now** [X]
 <br>Status bar displays "1 item left" when there is 1 item left, ect- **Automate Now** [ ]
 <br>Can click ‘X’ symbol and delete list item - **Automate Now** [ ]
-Can’t add an item with an empty value - **Automate Now** [ ]
+<br>Can’t add an item with an empty value - **Automate Now** [ ]
 <br>Can add a value with a single character - **Automate Now** [ ]
 <br>Can add Accented character - **Automate Now** [ ]
 <br>Can add emoji character - **Automate Now** [ ]

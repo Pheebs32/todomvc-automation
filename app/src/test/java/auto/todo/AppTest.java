@@ -283,6 +283,12 @@ public class AppTest {
         assertEquals(1, activeTodos.size());
     }
 
+    @Test
+    void testStatusBarHidden() {
+        WebElement search = driver.findElement(By.xpath("//footer/ul"));
+        assertFalse(search.isDisplayed());
+    }
+
     @AfterEach
     void closeBrowser() {
         driver.quit();
