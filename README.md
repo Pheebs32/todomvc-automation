@@ -1,6 +1,7 @@
 # Automation test for ToDoMVC
 #### Pair work for phase 3 challenge
-
+**- Each test is within its own confinements to prevent interference -**
+<br>**- If interference is wanted it will be made into a test of its own -**
 #### Automate now
 Add a new ToDo item - **Automate Now** [x]
 <br>Modify a ToDo item (by double-clicking) - **Automate Now** [X]
