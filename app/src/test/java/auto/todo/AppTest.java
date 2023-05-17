@@ -37,7 +37,7 @@ public class AppTest {
     }
 
     @Test
-    public void testEditTodoItem() {
+    void testEditTodoItem() {
         // Create a new item
         String todoText = "Buy groceries";
         driver.findElement(By.cssSelector(".new-todo")).sendKeys(todoText);
@@ -64,7 +64,7 @@ public class AppTest {
     }
 
     @Test
-    public void testRemovesTodo() {
+    void testRemovesTodo() {
         // Create a new item
         WebElement todoInput = driver.findElement(By.className("new-todo"));
         todoInput.sendKeys("Buy groceries");
@@ -90,7 +90,7 @@ public class AppTest {
     }
 
     @Test
-    public void testTogglesTodoCompleted() {
+    void testTogglesTodoCompleted() {
         // Create new items
         WebElement todoInput = driver.findElement(By.className("new-todo"));
         todoInput.sendKeys("Buy groceries");
