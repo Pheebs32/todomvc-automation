@@ -20,7 +20,7 @@ public class AppTest {
     }
 
     @Test
-    void createsTodo() {
+    void testCreatesTodo() {
         // Create a new item
         driver.get("https://todomvc.com/examples/vanillajs/");
         WebElement todoInput = driver.findElement(By.className("new-todo"));
@@ -65,7 +65,7 @@ public class AppTest {
     }
 
     @Test
-    public void removesTodo() {
+    public void testRemovesTodo() {
         // Create a new item
         driver.get("https://todomvc.com/examples/vanillajs/");
         WebElement todoInput = driver.findElement(By.className("new-todo"));
@@ -92,7 +92,7 @@ public class AppTest {
     }
 
     @Test
-    public void togglesTodoCompleted() {
+    public void testTogglesTodoCompleted() {
         // Create new items
         driver.get("https://todomvc.com/examples/vanillajs/");
         WebElement todoInput = driver.findElement(By.className("new-todo"));
@@ -135,7 +135,7 @@ public class AppTest {
     }
 
     @Test
-    void togglesAllTodosCompleted() {
+    void testTogglesAllTodosCompleted() {
         // Create new items
         driver.get("https://todomvc.com/examples/vanillajs/");
         WebElement todoInput = driver.findElement(By.className("new-todo"));
@@ -168,6 +168,50 @@ public class AppTest {
         // Verify active items count
         List<WebElement> activeTodos = driver.findElements(By.cssSelector(".todo-list li"));
         assertEquals(0, activeTodos.size());
+    }
+
+    @Test
+    void testClearsCompletedTodos() {
+        // Create new items
+        driver.get("https://todomvc.com/examples/vanillajs/");
+        WebElement todoInput = driver.findElement(By.className("new-todo"));
+        todoInput.sendKeys("Buy groceries");
+        todoInput.sendKeys(Keys.ENTER);
+
+        todoInput.sendKeys("Buy dog food");
+        todoInput.sendKeys(Keys.ENTER);
+
+        // Toggle all items
+        WebElement toggleAllCheckbox = driver.findElement(By.className("toggle-all"));
+        toggleAllCheckbox.click();
+
+        // Create a new item
+        todoInput.sendKeys("Buy toiletries");
+        todoInput.sendKeys(Keys.ENTER);
+
+        // Clear completed items
+        WebElement clearCompletedButton = driver.findElement(By.className("clear-completed"));
+        clearCompletedButton.click();
+
+        // Verify count
+        WebElement todoCount = driver.findElement(By.cssSelector(".todo-count > strong"));
+        assertEquals(1, Integer.parseInt(todoCount.getText()));
+
+        // Show completed items
+        WebElement completedLink = driver.findElement(By.cssSelector("a[href='#/completed']"));
+        completedLink.click();
+
+        // Verify completed items count
+        List<WebElement> completedTodos = driver.findElements(By.cssSelector(".todo-list li"));
+        assertEquals(0, completedTodos.size());
+
+        // Show active items
+        WebElement activeLink = driver.findElement(By.cssSelector("a[href='#/active']"));
+        activeLink.click();
+
+        // Verify active items count
+        List<WebElement> activeTodos = driver.findElements(By.cssSelector(".todo-list li"));
+        assertEquals(1, activeTodos.size());
     }
 
     @AfterEach
