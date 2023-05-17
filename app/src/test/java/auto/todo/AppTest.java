@@ -285,6 +285,7 @@ public class AppTest {
 
     @Test
     void testStatusBarHidden() {
+        // Search for the footer - it should only be created if there is an item in the list
         WebElement search = driver.findElement(By.xpath("//footer/ul"));
         assertFalse(search.isDisplayed());
     }
@@ -314,6 +315,17 @@ public class AppTest {
         // Verify item count
         WebElement todoCount = driver.findElement(By.cssSelector(".todo-count > strong"));
         assertEquals(2, Integer.parseInt(todoCount.getText()));
+    }
+
+    @Test
+    void testCantAddNoValueToList() {
+        // Try to create a new item
+        WebElement todoInput = driver.findElement(By.className("new-todo"));
+        todoInput.sendKeys(Keys.ENTER);
+
+        // Search for the footer - it should only be created if there is an item in the list
+        WebElement search = driver.findElement(By.xpath("//footer/ul"));
+        assertFalse(search.isDisplayed());
     }
 
     @AfterEach
