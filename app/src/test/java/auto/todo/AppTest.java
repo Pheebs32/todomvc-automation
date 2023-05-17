@@ -17,12 +17,12 @@ public class AppTest {
     @BeforeEach
     void launchBrowser() {
         driver = new FirefoxDriver();
+        driver.get("https://todomvc.com/examples/vanillajs/");
     }
 
     @Test
     void testCreatesTodo() {
         // Create a new item
-        driver.get("https://todomvc.com/examples/vanillajs/");
         WebElement todoInput = driver.findElement(By.className("new-todo"));
         todoInput.sendKeys("Buy groceries");
         todoInput.sendKeys(Keys.ENTER);
@@ -39,7 +39,6 @@ public class AppTest {
     @Test
     public void testEditTodoItem() {
         // Create a new item
-        driver.get("https://todomvc.com/examples/vanillajs/");
         String todoText = "Buy groceries";
         driver.findElement(By.cssSelector(".new-todo")).sendKeys(todoText);
         WebElement search = driver.findElement(By.cssSelector(".new-todo"));
@@ -67,7 +66,6 @@ public class AppTest {
     @Test
     public void testRemovesTodo() {
         // Create a new item
-        driver.get("https://todomvc.com/examples/vanillajs/");
         WebElement todoInput = driver.findElement(By.className("new-todo"));
         todoInput.sendKeys("Buy groceries");
         todoInput.sendKeys(Keys.ENTER);
@@ -94,7 +92,6 @@ public class AppTest {
     @Test
     public void testTogglesTodoCompleted() {
         // Create new items
-        driver.get("https://todomvc.com/examples/vanillajs/");
         WebElement todoInput = driver.findElement(By.className("new-todo"));
         todoInput.sendKeys("Buy groceries");
         todoInput.sendKeys(Keys.ENTER);
@@ -137,7 +134,6 @@ public class AppTest {
     @Test
     void testTogglesAllTodosCompleted() {
         // Create new items
-        driver.get("https://todomvc.com/examples/vanillajs/");
         WebElement todoInput = driver.findElement(By.className("new-todo"));
         todoInput.sendKeys("Buy groceries");
         todoInput.sendKeys(Keys.ENTER);
@@ -173,7 +169,6 @@ public class AppTest {
     @Test
     void testClearsCompletedTodos() {
         // Create new items
-        driver.get("https://todomvc.com/examples/vanillajs/");
         WebElement todoInput = driver.findElement(By.className("new-todo"));
         todoInput.sendKeys("Buy groceries");
         todoInput.sendKeys(Keys.ENTER);
