@@ -3,6 +3,7 @@ package auto.todo;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.interactions.Actions;
 //import org.openqa.selenium.JavascriptExecutor;
 import java.io.IOException;
@@ -19,7 +20,6 @@ public class AppTest {
     void launchBrowser() {
         driver = new FirefoxDriver();
         driver.get("https://todomvc.com/examples/vanillajs/");
-        //Thread.sleep(3000);
     }
 
     @Test
