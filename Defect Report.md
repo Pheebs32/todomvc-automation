@@ -11,6 +11,11 @@
 <br>Navigate to various pages and sections of the website.
 <br>Click on different links within the application, including navigation menus, buttons, and embedded links.
 <br>Observe the destination of each clicked link.
+<br>**The specific broken links are below:**
+<br>https://todomvc.com/examples/humble
+<br>https://todomvc.com/examples/somajs
+<br>https://todomvc.com/examples/atmajs
+<br>https://todomvc.com/examples/componentjs
 
 **Expected Result:**
 <br>All links within the TodoMVC website should lead to valid and relevant pages or sections of the application.
