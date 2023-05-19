@@ -35,3 +35,18 @@ By following these steps, the automated tests for the TodoMVC website were succe
 defects were identified and reported, and the overall quality of the application was assessed. 
 The test documentation was updated to reflect the latest test coverage and results, providing valuable 
 insights for the development team and stakeholders.
+
+### What would be added next time:
+**Cross-Browser and Cross-Device Compatibility:**
+<br>Test the TodoMVC website on different browsers (e.g., Chrome, Firefox, Safari) to ensure consistent functionality and appearance.
+<br>Validate the responsiveness and usability of the website on various devices (desktop, tablet, mobile).
+
+**Performance and Load Testing:**
+<br>Conduct performance testing to evaluate the website's responsiveness, page load times, and resource utilization under different user loads.
+<br>Test the application's performance with a large number of tasks to ensure optimal performance and responsiveness.
+
+**Security Testing:**
+<br>Perform security testing to identify and validate the effectiveness of security measures, such as input validation, authentication mechanisms, and data protection.
+
+**Accessibility Testing:**
+<br>Evaluate the website's accessibility compliance, including keyboard navigation, screen reader compatibility, and adherence to WCAG guidelines.
